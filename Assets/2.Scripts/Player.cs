@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            JumpPower += 1;
+            JumpPower += DataBaseManager.Instance.JumpPowerIncrease;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
