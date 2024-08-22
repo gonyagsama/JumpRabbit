@@ -8,10 +8,8 @@ public class Platform : MonoBehaviour
     private BoxCollider2D col;
     [SerializeField] private int score;
 
-    public float GetHaIfSizeX()
-    {
-        return col.size.x * 0.5f;
-    }
+    public float HalfSizeX => col.size.x * 0.5f;
+    public int Score =>score;
 
     private void Awake()
     {
@@ -24,6 +22,6 @@ public class Platform : MonoBehaviour
 
     internal void OnLanding()
     {
-        ScoreManager.instance.AddScore(score);
+        ScoreManager.instance.AddScore(score, transform.position);
     }
 }

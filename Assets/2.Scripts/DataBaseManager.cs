@@ -18,6 +18,7 @@ public class DataBaseManager : ScriptableObject
 
     public float GapIntervalMin = 1.0f;
     public float GapIntervalMax = 2.0f;
+    public float BonusValue = 0.05f;
 
     [Header("Ä«¸Þ¶ó")]
     public float followSpeed = 5;

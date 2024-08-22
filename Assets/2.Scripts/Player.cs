@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
     private float JumpPower = 0;
+    private Platform landedPlatform;
 
     private Rigidbody2D rigd;
     private Animator anim;
@@ -47,7 +49,14 @@ public class Player : MonoBehaviour
 
         if(collision.transform.parent.TryGetComponent(out Platform platform))
         {
-            platform.OnLanding();
+            //platform.OnLanding();
+            ScoreManager.instance.AddScore(platform.Score, platform.transform.position);
+
+            if (landedPlatform = platform) ScoreManager.instance.AddBonus(DataBaseManager.Instance.BonusValue, transform.position);
+            else ScoreManager.instance.ResetBonus();
+
+            landedPlatform = platform;
+
         }
     }
 }

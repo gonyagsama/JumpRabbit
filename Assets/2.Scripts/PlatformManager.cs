@@ -67,10 +67,10 @@ public class PlatformManager : MonoBehaviour
         Debug.Log("Platform[{platform},{}]");
 
         if (platformNum != 0)
-            pos = pos + Vector3.right * platform.GetHaIfSizeX();
+            pos = pos + Vector3.right * platform.HalfSizeX;
         platform.Active(pos);
         float gap = Random.Range(DataBaseManager.Instance.GapIntervalMin, DataBaseManager.Instance.GapIntervalMax);
-        pos = pos + Vector3.right * (platform.GetHaIfSizeX() + gap);
+        pos = pos + Vector3.right * (platform.HalfSizeX + gap);
 
         return pos;
     }
