@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -18,6 +15,12 @@ public class Platform : MonoBehaviour
     public void Active(Vector2 pos)
     {
         transform.position = pos;
+
+        if(Random.value < DataBaseManager.Instance.itemSpawnPer)
+        {
+        Item item = Instantiate<Item>(DataBaseManager.Instance.baseItem);
+        item.Active(transform.position, HalfSizeX);
+        }
     }
 
     internal void OnLanding()
