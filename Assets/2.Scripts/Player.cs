@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
             JumpPower = 0;
 
             anim.SetInteger("StateID", 2);
+            Define.SfxType sfxType = Random.value < 0.5f ? Define.SfxType.Jump1 : Define.SfxType.Jump2;
+            SoundManager.Instance.PlaySfx(sfxType);
         }
 
     }

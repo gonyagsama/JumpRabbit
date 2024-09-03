@@ -10,6 +10,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private DataBaseManager dataBaseManager;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private SoundManager soundManager;
 
     private void Awake()
     {
@@ -18,11 +19,13 @@ public class Gamemanager : MonoBehaviour
         platformManager.Init();
         cameraManager.Init();
         scoreManager.Init();
+        soundManager.Init();
     }
 
     private void Start()
     {
         platformManager.Active();
+        soundManager.PlayBgm(Define.BgmType.Main);
 
         int a = 123456;
         Debug.Log("Extension Test int : " + a.ToString());

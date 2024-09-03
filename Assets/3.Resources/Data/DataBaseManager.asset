@@ -18,6 +18,14 @@ MonoBehaviour:
   baseItem: {fileID: 3395435877744667240, guid: 07e671e323ec3a846858c18a5db1a559, type: 3}
   itemSpawnPer: 0.2
   itemBonus: 0.25
+  sfxDatasArr:
+  - sfxType: 10
+    clip: {fileID: 8300000, guid: 4973db4449778d64cad7dee8f61ee655, type: 3}
+  - sfxType: 20
+    clip: {fileID: 8300000, guid: 5d09e673d2989934c9bf634cbaa9f8aa, type: 3}
+  bgmDataArr:
+  - bgmType: 10
+    clip: {fileID: 8300000, guid: e0e43c628e1bee542bd57ac3d8780aff, type: 3}
   JumpPowerIncrease: 5
   LargePlatformArr:
   - {fileID: 7200227364462346612, guid: 0dc9eb3528afe6142aee5291af00c647, type: 3}

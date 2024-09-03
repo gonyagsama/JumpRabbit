@@ -17,10 +17,29 @@ public class DataBaseManager : ScriptableObject
     public float itemSpawnPer = 0.2f;
     public float itemBonus = 0.25f;
 
+    [Header("»ç¿îµå")]
+    public SfxData[] sfxDatasArr;
+    public BgmData[] bgmDataArr;
+    private Dictionary<Define.SfxType, SfxData> sfxDataDic = new Dictionary<Define.SfxType, SfxData>();
+    private Dictionary<Define.BgmType, BgmData> bgmDataDic = new Dictionary<Define.BgmType, BgmData>();
+    public void Init()
+    {
+        Instance = this;
+        foreach (SfxData sfxData in sfxDatasArr)
+        {
+            sfxDataDic.Add(sfxData.sfxType, sfxData);
+        }
+
+        foreach (BgmData bgmData in bgmDataArr)
+        {
+            bgmDataDic.Add(bgmData.bgmType, bgmData);
+        }
+    }
+
     [Header("ÇÃ·¹ÀÌ¾î")]
     public float JumpPowerIncrease = 1;
 
-    [Header("ÇÃ·§Æû")]
+    [Header("ÇÃ·§Æû")] 
     public Platform[] LargePlatformArr;
     public Platform[] MiddlePlatformArr;
     public Platform[] SmallPlatformArr;
@@ -34,8 +53,28 @@ public class DataBaseManager : ScriptableObject
     public float followSpeed = 5;
 
 
-    public void Init()
+    public SfxData GetSfxData(Define.SfxType type)
     {
-        Instance = this;
+        return this.sfxDataDic[type];
     }
+    public BgmData GetBgmData(Define.BgmType type) 
+    {
+        return this.bgmDataDic[type];
+    }
+    
+    [System.Serializable]
+
+    public class SfxData
+    {
+        public Define.SfxType sfxType;
+        public AudioClip clip;
+    }
+    [System.Serializable]
+    public class BgmData
+    {
+        public Define.BgmType bgmType;
+        public AudioClip clip;
+    }
+
+
 }
