@@ -3,28 +3,31 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     private BoxCollider2D col;
+    private Animation anim;
     [SerializeField] private int score;
 
     public float HalfSizeX => col.size.x * 0.5f;
-    public int Score =>score;
+    public int Score => score;
 
     private void Awake()
     {
         col = GetComponentInChildren<BoxCollider2D>();
+        anim = GetComponent<Animation>();
     }
     public void Active(Vector2 pos)
     {
         transform.position = pos;
+        Debug.Log("Platform.position " + pos);
 
-        if(Random.value < DataBaseManager.Instance.itemSpawnPer)
+        if (Random.value < DataBaseManager.Instance.itemSpawnPer)
         {
-        Item item = Instantiate<Item>(DataBaseManager.Instance.baseItem);
-        item.Active(transform.position, HalfSizeX);
+            Item item = Instantiate<Item>(DataBaseManager.Instance.baseItem);
+            item.Active(transform.position, HalfSizeX);
         }
     }
 
-    internal void OnLanding()
+    internal void OnLandingAnimation()
     {
-        ScoreManager.instance.AddScore(score, transform.position);
+        anim.Play();
     }
 }

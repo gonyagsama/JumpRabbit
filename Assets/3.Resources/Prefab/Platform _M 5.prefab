@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: score
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 7109642562351806147, guid: 6ffa7c5855db7334b9a21c3561dbd73b, type: 3}
+      propertyPath: m_Size.x
+      value: 2.9286046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109642562351806147, guid: 6ffa7c5855db7334b9a21c3561dbd73b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.057860076
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109642562351806147, guid: 6ffa7c5855db7334b9a21c3561dbd73b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.19999999
+      objectReference: {fileID: 0}
     - target: {fileID: 7211609468077602607, guid: 6ffa7c5855db7334b9a21c3561dbd73b, type: 3}
       propertyPath: m_Name
       value: Platform _M 5
