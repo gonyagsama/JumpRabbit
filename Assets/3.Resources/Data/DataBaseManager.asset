@@ -41,7 +41,7 @@ MonoBehaviour:
   - {fileID: 7200227364462346612, guid: cf13b17cb244a53459e12cb26c8f0f9a, type: 3}
   - {fileID: 7200227364462346612, guid: f6dd10ea68638454b9755aab1b963d3f, type: 3}
   DataArray:
-  - GroupCount: 5
+  - GroupCount: 50
     LargePercent: 1
     MiddlePercent: 0
     SmallPercent: 0
