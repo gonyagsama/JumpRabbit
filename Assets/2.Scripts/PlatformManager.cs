@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
+    public static PlatformManager Instance;
     [System.Serializable]
     public class Data
     {
@@ -34,6 +35,9 @@ public class PlatformManager : MonoBehaviour
     [SerializeField] private Transform spawmPosTrf;
     private Vector3 spawnPos;
     private int platformNum = 0;
+    public int LandingPlatformNum;
+    private Data lastData;
+
 
     Dictionary<int, Platform[]> PlatformArrDic = new Dictionary<int, Platform[]>();
     internal void Active()
@@ -41,7 +45,7 @@ public class PlatformManager : MonoBehaviour
         spawnPos = spawmPosTrf.position;
 
         int platformGroupSum = 0;
-        foreach(Data data in DataBaseManager.Instance.DataArray)
+        foreach(Data data in DataBaseManager.Instance.DataArr)
         {
             platformGroupSum += data.GroupCount;
             Debug.Log($"platformGroupSum: {platformGroupSum} ============= ");
@@ -50,13 +54,28 @@ public class PlatformManager : MonoBehaviour
             {
                 int platformID = data.GetPlatformID();
                 ActiveOne(platformID);
-                platformNum++;
             }
         }
     }
 
-    private Vector3 ActiveOne(int platformID)
+    public void Update()
     {
+        if(platformNum - LandingPlatformNum < DataBaseManager.Instance.remainPlatformCount)
+        {
+            int lastIndex = DataBaseManager.Instance.DataArr.Length - 1;
+            Data lastData = DataBaseManager.Instance.DataArr[lastIndex];
+
+            for(int i = 0; i < lastData.GroupCount; i++)
+            {
+                int platformID = lastData.GetPlatformID();
+                ActiveOne(platformID);
+            }
+        }
+    }
+
+    private void ActiveOne(int platformID)
+    {
+        platformNum++;
         Platform[] platforms = PlatformArrDic[platformID];
 
         int randID = Random.Range(0, platforms.Length);
@@ -64,22 +83,22 @@ public class PlatformManager : MonoBehaviour
 
         Platform platform = Instantiate(randomPlatform);
 
-        if (platformNum != 0)
+
+        if (platformNum > 1)
             spawnPos = spawnPos + Vector3.right * platform.HalfSizeX;
 
-        bool isFirstPlatform = platformNum == 0;
-        platform.Active(spawnPos, isFirstPlatform);
+        platform.Active(spawnPos, platformNum);
 
-        platform.Active(spawnPos);
         float gap = Random.Range(DataBaseManager.Instance.GapIntervalMin, DataBaseManager.Instance.GapIntervalMax);
         spawnPos = spawnPos + Vector3.right * (platform.HalfSizeX + gap);
-
-        return spawnPos;
+        return;
     }
 
 
     internal void Init()
     {
+        Instance = this;
+
         PlatformArrDic.Add(0, DataBaseManager.Instance.SmallPlatformArr);
         PlatformArrDic.Add(1, DataBaseManager.Instance.MiddlePlatformArr);
         PlatformArrDic.Add(2, DataBaseManager.Instance.LargePlatformArr);

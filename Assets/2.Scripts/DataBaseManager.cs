@@ -48,11 +48,12 @@ public class DataBaseManager : ScriptableObject
     public Platform[] LargePlatformArr;
     public Platform[] MiddlePlatformArr;
     public Platform[] SmallPlatformArr;
-    public PlatformManager.Data[] DataArray;
+    public PlatformManager.Data[] DataArr;
 
     public float GapIntervalMin = 1.0f;
     public float GapIntervalMax = 2.0f;
     public float BonusValue = 0.05f;
+    public int remainPlatformCount = 5;
 
     [Header("Ä«¸Þ¶ó")]
     public float followSpeed = 5;

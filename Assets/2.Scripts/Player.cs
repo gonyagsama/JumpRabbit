@@ -59,7 +59,9 @@ public class Player : MonoBehaviour
 
         if(collision.transform.TryGetComponent(out Platform platform))
         {
+            PlatformManager.Instance.LandingPlatformNum = platform.number;
             platform.OnLandingAnimation();
+
             if (landedPlatform == null)
             {
                 landedPlatform = platform;

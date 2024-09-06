@@ -28,6 +28,7 @@ MonoBehaviour:
   - bgmType: 10
     clip: {fileID: 8300000, guid: e0e43c628e1bee542bd57ac3d8780aff, type: 3}
   JumpPowerIncrease: 5
+  GameOverY: -6
   LargePlatformArr:
   - {fileID: 7200227364462346612, guid: 0dc9eb3528afe6142aee5291af00c647, type: 3}
   - {fileID: 7200227364462346612, guid: 6887f63e38e17bc44ab674d149e7fcb1, type: 3}
@@ -41,20 +42,21 @@ MonoBehaviour:
   - {fileID: 7200227364462346612, guid: e6cd16fd009a0d54d91a062965877e7a, type: 3}
   - {fileID: 7200227364462346612, guid: cf13b17cb244a53459e12cb26c8f0f9a, type: 3}
   - {fileID: 7200227364462346612, guid: f6dd10ea68638454b9755aab1b963d3f, type: 3}
-  DataArray:
-  - GroupCount: 3
+  DataArr:
+  - GroupCount: 2
     LargePercent: 1
     MiddlePercent: 0
     SmallPercent: 0
-  - GroupCount: 1
+  - GroupCount: 2
     LargePercent: 0
     MiddlePercent: 1
     SmallPercent: 0
-  - GroupCount: 3
-    LargePercent: 0.4
-    MiddlePercent: 0.3
-    SmallPercent: 0.3
+  - GroupCount: 1
+    LargePercent: 0.495
+    MiddlePercent: 0.514
+    SmallPercent: 0.495
   GapIntervalMin: 1
   GapIntervalMax: 2
   BonusValue: 0.05
+  remainPlatformCount: 5
   followSpeed: 5
