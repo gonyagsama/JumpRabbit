@@ -38,6 +38,14 @@ public class Player : MonoBehaviour
             anim.SetInteger("StateID", 2);
             Define.SfxType sfxType = Random.value < 0.5f ? Define.SfxType.Jump1 : Define.SfxType.Jump2;
             SoundManager.Instance.PlaySfx(sfxType);
+
+            Effect effect = Instantiate(DataBaseManager.Instance.effect);
+            effect.Active(transform.position);
+        }
+
+        if (transform.position.y < DataBaseManager.Instance.GameOverY)
+        {
+            Gamemanager.Instance.OnGameOver();
         }
 
     }
@@ -52,6 +60,11 @@ public class Player : MonoBehaviour
         if(collision.transform.TryGetComponent(out Platform platform))
         {
             platform.OnLandingAnimation();
+            if (landedPlatform == null)
+            {
+                landedPlatform = platform;
+                return;
+            }
 
 
             if (landedPlatform != platform) 

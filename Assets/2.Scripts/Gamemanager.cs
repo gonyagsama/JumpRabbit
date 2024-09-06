@@ -1,20 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
+    public static Gamemanager Instance;
+
     [SerializeField] private PlatformManager platformManager;
     [SerializeField] private Player player;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private DataBaseManager dataBaseManager;
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private SoundManager soundManager;
+    [SerializeField] private GameObject retryBtnObj;
+
+
+
+    public void CallBtnRetry()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnGameOver()
+    {
+        retryBtnObj.SetActive(true);
+    }
 
     private void Awake()
     {
+        Instance = this;
         dataBaseManager.Init();
+
         player.Init();
         platformManager.Init();
         cameraManager.Init();
@@ -25,6 +44,7 @@ public class Gamemanager : MonoBehaviour
     private void Start()
     {
         platformManager.Active();
+        scoreManager.Active();
         soundManager.PlayBgm(Define.BgmType.Main);
 
         int a = 123456;

@@ -11,6 +11,7 @@ public class DataBaseManager : ScriptableObject
     public Color ScoreColor;
     public Color BonusColor;
     public float ScorePopInterval = 0.2f;
+    public Effect effect;
 
     [Header("아이템")]
     public Item baseItem;
@@ -25,6 +26,9 @@ public class DataBaseManager : ScriptableObject
     public void Init()
     {
         Instance = this;
+        sfxDataDic = new Dictionary<Define.SfxType, SfxData>();
+        bgmDataDic = new Dictionary<Define.BgmType, BgmData>();
+
         foreach (SfxData sfxData in sfxDatasArr)
         {
             sfxDataDic.Add(sfxData.sfxType, sfxData);
@@ -38,6 +42,7 @@ public class DataBaseManager : ScriptableObject
 
     [Header("플레이어")]
     public float JumpPowerIncrease = 1;
+    public float GameOverY = -6f;
 
     [Header("플랫폼")] 
     public Platform[] LargePlatformArr;

@@ -14,12 +14,12 @@ public class Platform : MonoBehaviour
         col = GetComponentInChildren<BoxCollider2D>();
         anim = GetComponent<Animation>();
     }
-    public void Active(Vector2 pos)
+    public void Active(Vector2 pos, bool isFirstPlatform = false)
     {
         transform.position = pos;
         Debug.Log("Platform.position " + pos);
 
-        if (Random.value < DataBaseManager.Instance.itemSpawnPer)
+        if (isFirstPlatform == false && Random.value < DataBaseManager.Instance.itemSpawnPer)
         {
             Item item = Instantiate<Item>(DataBaseManager.Instance.baseItem);
             item.Active(transform.position, HalfSizeX);
