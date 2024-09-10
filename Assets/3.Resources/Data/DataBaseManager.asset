@@ -27,8 +27,10 @@ MonoBehaviour:
   bgmDataArr:
   - bgmType: 10
     clip: {fileID: 8300000, guid: e0e43c628e1bee542bd57ac3d8780aff, type: 3}
-  JumpPowerIncrease: 5
+  JumpPowerIncrease: 950
   GameOverY: -6
+  minJumpPower: 150
+  maxJumpPower: 1500
   LargePlatformArr:
   - {fileID: 7200227364462346612, guid: 0dc9eb3528afe6142aee5291af00c647, type: 3}
   - {fileID: 7200227364462346612, guid: 6887f63e38e17bc44ab674d149e7fcb1, type: 3}
