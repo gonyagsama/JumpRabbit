@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,14 +17,21 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     [SerializeField] private TextMeshProUGUI scoreTmp;
     [SerializeField] private TextMeshProUGUI bonusTmp;
+    [SerializeField] private Text highScoreTmp;
     [SerializeField] private Score baseScore;
     private List<ScoreData> scoreDataList = new List<ScoreData>();
 
     private int totalScore;
     private float totalBonus;
+    private int highScore;  // 최고 스코어 변수 추가
+
+
     public void Init()
     {
         instance = this;
+
+        // 최고 스코어를 PlayerPrefs에서 불러오기
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     public void Active()
@@ -32,6 +40,9 @@ public class ScoreManager : MonoBehaviour
 
         scoreTmp.text = totalScore.ToString();
         bonusTmp.text = totalBonus.TopercentString();
+
+        // 최고 스코어 UI 업데이트
+        highScoreTmp.text = highScore.ToString();
     }
 
     private IEnumerator OnScoreCor()
@@ -56,10 +67,9 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-
     public void AddScore(int score, Vector2 scorePos, bool isCalcBonus = true)
     {
-        //애니
+        // 애니메이션 처리
         scoreDataList.Add(new ScoreData()
         {
             str = score.ToString(),
@@ -67,10 +77,12 @@ public class ScoreManager : MonoBehaviour
             pos = scorePos
         });
 
-        //canvas
+        // 점수 갱신
         totalScore += score;
         scoreTmp.text = totalScore.ToString();
 
+   
+        // 보너스 점수 계산
         if (isCalcBonus)
         {
             int bonusScore = (int)(score * totalBonus);
@@ -83,7 +95,7 @@ public class ScoreManager : MonoBehaviour
 
     internal void AddBonus(float bonus, Vector2 position)
     {
-        //애니
+        // 애니메이션 처리
         scoreDataList.Add(new ScoreData()
         {
             str = "Bonus " + bonus.TopercentString(),
@@ -91,14 +103,14 @@ public class ScoreManager : MonoBehaviour
             pos = position
         });
 
-        //canvas
+        // 보너스 갱신
         totalBonus += bonus;
         bonusTmp.text = totalBonus.TopercentString();
     }
 
     internal void ResetBonus(Vector2 bonusPos)
     {
-        //애니
+        // 애니메이션 처리
         scoreDataList.Add(new ScoreData()
         {
             str = "보너스 초기화",

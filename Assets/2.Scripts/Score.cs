@@ -21,5 +21,6 @@ public class Score : MonoBehaviour
     public void Deactive()
     {
         Destroy(gameObject);
+
     }
 }

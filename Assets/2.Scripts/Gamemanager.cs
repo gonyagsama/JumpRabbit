@@ -23,6 +23,9 @@ public class Gamemanager : MonoBehaviour
     public void OnGameOver()
     {
         retryBtnObj.SetActive(true);
+
+
+
     }
 
     private void Awake()
