@@ -14,6 +14,11 @@ public class Item : MonoBehaviour
         if(collision.transform.TryGetComponent(out Player player))
         {
             ScoreManager.instance.AddBonus(DataBaseManager.Instance.itemBonus, transform.position);
+
+            AudioSource Bgm = GetComponent<AudioSource>();
+
+            Bgm.Play();
+
             Destroy(gameObject);
         }
     }
