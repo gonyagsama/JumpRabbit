@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu]
 public class DataBaseManager : ScriptableObject
@@ -59,6 +60,9 @@ public class DataBaseManager : ScriptableObject
 
     [Header("카메라")]
     public float followSpeed = 5;
+
+    [Header("슬라이더")]
+    public Slider timeSlider;
 
 
     public SfxData GetSfxData(Define.SfxType type)

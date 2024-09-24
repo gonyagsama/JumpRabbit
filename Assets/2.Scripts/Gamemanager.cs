@@ -13,19 +13,21 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameObject retryBtnObj;
 
-
-
-    public void CallBtnRetry()
-    {
-        SceneManager.LoadScene(0);
-    }
-
     public void OnGameOver()
     {
+        ScoreManager.instance.CalBestScore();
         retryBtnObj.SetActive(true);
+        OnGameStop();
+    }
 
+    public void OnGameStop() 
+    {
+        Time.timeScale = 0;
+    }
 
-
+    public void OnGameStart()
+    {
+        Time.timeScale = 1;
     }
 
     private void Awake()

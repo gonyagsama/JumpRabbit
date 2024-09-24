@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private bool isJumpReady;
 
+
     private void Awake()
     {
         rigd = GetComponent<Rigidbody2D>();
@@ -60,11 +61,11 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
+
         if (Input.GetKey(KeyCode.Space))
         {
         }
-        else 
+        else
 
         if (transform.position.y < DataBaseManager.Instance.GameOverY)
         {

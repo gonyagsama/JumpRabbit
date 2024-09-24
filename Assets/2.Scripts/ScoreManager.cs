@@ -21,14 +21,16 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Score baseScore;
     private List<ScoreData> scoreDataList = new List<ScoreData>();
 
-    private int totalScore;
-    private float totalBonus;
-    private int highScore;  // 최고 스코어 변수 추가
+    public int totalScore;
+    public float totalBonus;
+    public int highScore;  // 최고 스코어 변수 추가
 
 
     public void Init()
     {
         instance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         // 최고 스코어를 PlayerPrefs에서 불러오기
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -81,6 +83,7 @@ public class ScoreManager : MonoBehaviour
         totalScore += score;
         scoreTmp.text = totalScore.ToString();
 
+
    
         // 보너스 점수 계산
         if (isCalcBonus)
@@ -120,5 +123,21 @@ public class ScoreManager : MonoBehaviour
 
         totalBonus = 0;
         bonusTmp.text = totalBonus.TopercentString();
+    }
+
+    public void CalBestScore()
+    {
+        //최고 스코어 갱신
+        if (totalScore > highScore)
+        {
+            highScore = totalScore;
+
+            // 최고 스코어를 PlayerPrefs에서 불러오기
+            PlayerPrefs.SetInt("HighScore", highScore);
+
+            // 최고 스코어 UI 업데이트
+            highScoreTmp.text = highScore.ToString();
+
+        }
     }
 }

@@ -8,6 +8,7 @@ public class Button : MonoBehaviour
     public void ChangeScene()
     {
         SceneManager.LoadScene("Main");
+        Gamemanager.Instance.OnGameStart();
     }
 
     public void QuitGame()
